@@ -1,3 +1,11 @@
+var FormView = require('./FormView.js');
+var RoomsView = require('./RoomsView.js');
+var MessagesView = require('./MessagesView.js');
+var Parse = require('./Parse.js');
+var Rooms = require('./Rooms.js');
+var Messages = require('./Messages.js');
+var $ = require('jquery');
+
 var App = {
 
   $spinner: $('.spinner img'),

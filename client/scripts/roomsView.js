@@ -1,3 +1,8 @@
+var Rooms = require('./rooms.js');
+var MessagesView = require('./messagesView.js');
+var $ = require('jquery');
+var _ = require('underscore');
+
 var RoomsView = {
 
   $button: $('#rooms button'),

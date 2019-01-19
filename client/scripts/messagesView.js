@@ -1,3 +1,9 @@
+var Messages = require('./Messages.js');
+var Rooms = require('./Rooms.js');
+var MessageView = require('./MessageView.js');
+var Friends = require('./friends.js');
+var $ = require('jquery');
+
 var MessagesView = {
 
   $chats: $('#chats'),

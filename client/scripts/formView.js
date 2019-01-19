@@ -1,3 +1,11 @@
+var Rooms = require('./Rooms.js');
+var Parse = require('./Parse.js');
+var Messages = require('./Messages.js');
+var App = require('./App.js');
+
+var $ = require('jquery');
+var _ = require('underscore');
+
 var FormView = {
 
   $form: $('form'),
@@ -14,7 +22,8 @@ var FormView = {
     var message = {
       username: App.username,
       text: FormView.$form.find('#message').val(),
-      roomname: Rooms.selected || 'lobby'
+      roomname: Rooms.selected || 'lobby',
+      createdAt: new Date()
     };
 
     Parse.create(message, (data) => {
