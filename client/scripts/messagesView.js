@@ -1,8 +1,8 @@
-var Messages = require('./Messages.js');
-var Rooms = require('./Rooms.js');
-var MessageView = require('./MessageView.js');
-var Friends = require('./friends.js');
-var $ = require('jquery');
+// var {Messages} = require('./messages.js');
+// var {Rooms} = require('./rooms.js');
+// var {MessageView} = require('./messageView.js');
+// var {Friends} = require('./friends.js');
+// var $ = require('jquery');
 
 var MessagesView = {
 
@@ -36,3 +36,5 @@ var MessagesView = {
       }
 
 };
+
+// exports.MessagesView = MessagesView;

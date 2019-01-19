@@ -1,4 +1,4 @@
-var $ = require('jquery');
+// var $ = require('jquery');
 
 var Parse = {
 
@@ -32,3 +32,5 @@ var Parse = {
   }
 
 };
+
+// exports.Parse = Parse;

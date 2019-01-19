@@ -11,7 +11,7 @@ this file and include it in basic-server.js so that it actually works.
 *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
 
 **************************************************************/
-var fakeDB = []
+var fakeDB = [];
 
 var requestHandler = function (request, response) {
   console.log('Serving request type ' + request.method + ' for url ' + request.url);
@@ -21,7 +21,7 @@ var requestHandler = function (request, response) {
   var headers = defaultCorsHeaders;
 
   // debugger;
-  if (request.method === 'GET' && request.url === '/classes/messages') {
+  if (request.method === 'GET' && request.url.split('?')[0] === '/classes/messages') {
     statusCode = 200;
     headers['Content-Type'] = 'JSON';
     response.writeHead(statusCode, headers);
@@ -35,21 +35,35 @@ var requestHandler = function (request, response) {
       body.push(chunk);
     }).on('end', () => {
       body = Buffer.concat(body).toString();
-      fakeDB.push(JSON.parse(body));
+      if (body) {
+        fakeDB.push(JSON.parse(body));
+      } else {
+        statusCode = 400;
+        headers['Content-Type'] = 'plain/text';
+        response.writeHead(statusCode, headers);
+        response.end('Bad Request');
+      }
     });
-    response.end(JSON.stringify({ results: fakeDB }));
-  } else {
+    response.end(JSON.stringify({ results: fakeDB }))
+  } else if (request.method === 'OPTIONS'){
+    statusCode = 200;
+    headers['Content-Type'] = 'httpd/unix-directory';
+    response.writeHead(statusCode, headers);
+    response.end('LOADING...');
+  } else if (request.url !== '/classes/messages') {
     statusCode = 404;
     headers['Content-Type'] = 'plain/text';
     response.writeHead(statusCode, headers);
     response.end('Fail to get info');
   }
 
+
   // // You will need to change this if you are sending something
   // // other than plain text, like JSON or HTML.
   // headers['Content-Type'] = 'plain/text';
   // // .writeHead() writes to the request line and headers of the response,
   // // which includes the status and all headers.
+
   // response.writeHead(statusCode, headers);
   // response.end('LOADING...');
 };

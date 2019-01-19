@@ -1,4 +1,4 @@
-var _ = require('underscore');
+// var _ = require('underscore');
 
 var Friends = {
 
@@ -24,3 +24,5 @@ var Friends = {
   }
   
 };
+
+// exports.Friends = Friends;

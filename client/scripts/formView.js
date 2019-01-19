@@ -1,10 +1,10 @@
-var Rooms = require('./Rooms.js');
-var Parse = require('./Parse.js');
-var Messages = require('./Messages.js');
-var App = require('./App.js');
+// var {Rooms} = require('./rooms.js');
+// var {Parse} = require('./parse.js');
+// var {Messages} = require('./messages.js');
+// var {App} = require('./app.js');
 
-var $ = require('jquery');
-var _ = require('underscore');
+// var $ = require('jquery');
+// var _ = require('underscore');
 
 var FormView = {
 
@@ -38,3 +38,4 @@ var FormView = {
   }
 
 };
+// exports.FormView = FormView;

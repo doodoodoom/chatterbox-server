@@ -1,7 +1,7 @@
-var Rooms = require('./rooms.js');
-var MessagesView = require('./messagesView.js');
-var $ = require('jquery');
-var _ = require('underscore');
+// var {Rooms} = require('./rooms.js');
+// var {MessagesView} = require('./messagesView.js');
+// var $ = require('jquery');
+// var _ = require('underscore');
 
 var RoomsView = {
 
@@ -44,3 +44,6 @@ var RoomsView = {
       }
 
 };
+
+
+// exports.RoomsView = RoomsView;

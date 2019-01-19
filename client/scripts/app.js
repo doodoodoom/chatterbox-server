@@ -1,10 +1,10 @@
-var FormView = require('./FormView.js');
-var RoomsView = require('./RoomsView.js');
-var MessagesView = require('./MessagesView.js');
-var Parse = require('./Parse.js');
-var Rooms = require('./Rooms.js');
-var Messages = require('./Messages.js');
-var $ = require('jquery');
+// var {FormView}= require('./formView.js');
+// var {RoomsView} = require('./roomsView.js');
+// var {MessagesView} = require('./messagesView.js');
+// var {Parse} = require('./parse.js');
+// var {Rooms} = require('./rooms.js');
+// var {Messages} = require('./messages.js');
+// var $ = require('jquery');
 
 var App = {
 
@@ -30,9 +30,12 @@ var App = {
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
-
+      data = JSON.parse(data);
       // Don't bother to update if we have no messages
-      if (!data.results || !data.results.length) { return; }
+      if (!data.results) { 
+        console.log('FAILURE');
+        return; 
+      }
 
       Rooms.update(data.results, RoomsView.render);
       Messages.update(data.results, MessagesView.render);
@@ -51,3 +54,5 @@ var App = {
     FormView.setStatus(false);
   }
 };
+
+// exports.App = App;

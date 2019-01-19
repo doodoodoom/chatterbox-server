@@ -1,4 +1,4 @@
-var _ = require('underscore');
+// var _ = require('underscore');
 
 var Rooms = {
 
@@ -42,3 +42,5 @@ var Rooms = {
   }
   
 };
+
+// exports.Rooms = Rooms;

@@ -17,3 +17,5 @@ var MessageView = {
     `)
 
 };
+
+// exports.MessageView = MessageView;
