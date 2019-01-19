@@ -16,7 +16,7 @@ var fakeDB = []
 var requestHandler = function (request, response) {
   console.log('Serving request type ' + request.method + ' for url ' + request.url);
   // The outgoing status.
-  var statusCode = 404;
+  var statusCode = 200;
   // See the note below about CORS headers.
   var headers = defaultCorsHeaders;
 
@@ -26,8 +26,7 @@ var requestHandler = function (request, response) {
     headers['Content-Type'] = 'JSON';
     response.writeHead(statusCode, headers);
     response.end(JSON.stringify({ results: fakeDB }));
-  }
-  if (request.method === 'POST' && request.url === '/classes/messages') {
+  } else if (request.method === 'POST' && request.url === '/classes/messages') {
     statusCode = 201;
     headers['Content-Type'] = 'JSON';
     response.writeHead(statusCode, headers);
@@ -39,19 +38,20 @@ var requestHandler = function (request, response) {
       fakeDB.push(JSON.parse(body));
     });
     response.end(JSON.stringify({ results: fakeDB }));
-  } 
-  else {
+  } else {
     statusCode = 404;
-    response.end();
+    headers['Content-Type'] = 'plain/text';
+    response.writeHead(statusCode, headers);
+    response.end('Fail to get info');
   }
 
-  // You will need to change this if you are sending something
-  // other than plain text, like JSON or HTML.
-  headers['Content-Type'] = 'plain/text';
-  // .writeHead() writes to the request line and headers of the response,
-  // which includes the status and all headers.
-  response.writeHead(statusCode, headers);
-  response.end('LOADING...');
+  // // You will need to change this if you are sending something
+  // // other than plain text, like JSON or HTML.
+  // headers['Content-Type'] = 'plain/text';
+  // // .writeHead() writes to the request line and headers of the response,
+  // // which includes the status and all headers.
+  // response.writeHead(statusCode, headers);
+  // response.end('LOADING...');
 };
 
 // These headers will allow Cross-Origin Resource Sharing (CORS).
