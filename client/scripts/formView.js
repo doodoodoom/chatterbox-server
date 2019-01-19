@@ -22,12 +22,12 @@ var FormView = {
     var message = {
       username: App.username,
       text: FormView.$form.find('#message').val(),
-      roomname: Rooms.selected || 'lobby',
-      createdAt: new Date()
+      roomname: Rooms.selected || 'lobby'
     };
 
     Parse.create(message, (data) => {
-      _.extend(message, data);
+      console.log(data);
+      _.extend(message, JSON.parse(data));
       Messages.add(message, MessagesView.render);
     });
       },

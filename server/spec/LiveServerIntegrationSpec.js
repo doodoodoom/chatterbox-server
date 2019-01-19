@@ -37,6 +37,7 @@ describe('server', function() {
     var requestParams = {method: 'POST',
       uri: 'http://127.0.0.1:3000/classes/messages',
       json: {
+        createdAt: 12,
         username: 'Jono',
         text: 'Do my bidding!'}
     };
@@ -51,6 +52,7 @@ describe('server', function() {
     var requestParams = {method: 'POST',
       uri: 'http://127.0.0.1:3000/classes/messages',
       json: {
+        createdAt: 123,
         username: 'Jono',
         text: 'Do my bidding!'}
     };

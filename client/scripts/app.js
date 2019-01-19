@@ -36,7 +36,6 @@ var App = {
         console.log('FAILURE');
         return; 
       }
-
       Rooms.update(data.results, RoomsView.render);
       Messages.update(data.results, MessagesView.render);
       

@@ -12,6 +12,7 @@ this file and include it in basic-server.js so that it actually works.
 
 **************************************************************/
 var fakeDB = [];
+var objectId = 1
 
 var requestHandler = function (request, response) {
   console.log('Serving request type ' + request.method + ' for url ' + request.url);
@@ -36,7 +37,11 @@ var requestHandler = function (request, response) {
     }).on('end', () => {
       body = Buffer.concat(body).toString();
       if (body) {
-        fakeDB.push(JSON.parse(body));
+        body = JSON.parse(body);
+        body.objectId = objectId;
+        objectId++;
+        fakeDB.push(body);
+        response.end(JSON.stringify(body));
       } else {
         statusCode = 400;
         headers['Content-Type'] = 'plain/text';
@@ -44,8 +49,7 @@ var requestHandler = function (request, response) {
         response.end('Bad Request');
       }
     });
-    response.end(JSON.stringify({ results: fakeDB }))
-  } else if (request.method === 'OPTIONS'){
+  } else if (request.method === 'OPTIONS') {
     statusCode = 200;
     headers['Content-Type'] = 'httpd/unix-directory';
     response.writeHead(statusCode, headers);
