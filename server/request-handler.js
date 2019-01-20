@@ -36,8 +36,9 @@ var requestHandler = function (request, response) {
       body.push(chunk);
     }).on('end', () => {
       body = Buffer.concat(body).toString();
-      if (body) {
-        body = JSON.parse(body);
+      body = JSON.parse(body);
+      console.log(body)
+      if (body.text) {
         body.objectId = objectId;
         objectId++;
         fakeDB.push(body);

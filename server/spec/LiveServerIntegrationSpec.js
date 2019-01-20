@@ -61,8 +61,8 @@ describe('server', function() {
       // Now if we request the log, that message we posted should be there:
       request('http://127.0.0.1:3000/classes/messages', function(error, response, body) {
         var messages = JSON.parse(body).results;
-        expect(messages[0].username).to.equal('Jono');
-        expect(messages[0].text).to.equal('Do my bidding!');
+        expect(messages[messages.length - 1].username).to.equal('Jono');
+        expect(messages[messages.length - 1].text).to.equal('Do my bidding!');
         done();
       });
     });
@@ -71,6 +71,31 @@ describe('server', function() {
   it('Should 404 when asked for a nonexistent endpoint', function(done) {
     request('http://127.0.0.1:3000/arglebargle', function(error, response, body) {
       expect(response.statusCode).to.equal(404);
+      done();
+    });
+  });
+
+  it('Should accept OPTIONS requests', function(done) {
+    var requestParams = {method: 'OPTIONS',
+      uri: 'http://127.0.0.1:3000/classes/messages'
+    };
+    request(requestParams, function(error, response, body) {
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
+
+  it('should respond with 400 for empty message', function(done) {
+    var requestParams = {method: 'POST',
+      uri: 'http://127.0.0.1:3000/classes/messages',
+      json: {username: 'hi',
+             roomname: 'lobby',
+             text: ''
+      }
+    };
+
+    request(requestParams, function(error, response, body) {
+      expect(response.statusCode).to.equal(400);
       done();
     });
   });
